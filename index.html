@@ -203,7 +203,8 @@ footer{color:var(--sub);font-size:12.5px;text-align:center;padding:20px 0 40px;b
 button, a, .cat, .tag, .mark, .sel, input, select{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 /* 手機橫放（畫面很矮）：頂端列不固定，免得鍵盤打開後只剩一點點空間看結果 */
 @media (max-height:500px) and (pointer:coarse){ .bar{position:static} }
-.top .title{min-width:0;overflow-wrap:anywhere}
+.top .title{min-width:0;overflow-wrap:break-word}
+.title .paren{display:inline-block;font-feature-settings:"halt";max-width:100%;overflow-wrap:break-word;font-size:.84em;font-weight:500;opacity:.78}
 /* 單一分類的說明列：上方分類列 → 說明文字 → 粗線 → 下方內容，三段間距一致（約 12px） */
 .ghead.only-desc{margin-top:2.5px;padding-bottom:8.25px;margin-bottom:12px}
 .ghead.only-desc + .grid > .subhead:first-child{margin-top:-4.25px}
@@ -310,7 +311,7 @@ const ITEMS = [
 {n:"愛給網", u:"https://www.aigei.com/", c:"hub", d:"中文綜合素材站，音效、遊戲素材、影片、圖片都有，音效庫特別完整。", t:["音效", "中文"], s:"login"},
 {n:"Eagle 資源社群", u:"https://community-tw.eagle.cool/", c:"hub", d:"Eagle 官方社群分享的圖示、向量、插畫、字體包，可直接匯入 Eagle 管理。", t:["icon", "向量", "插圖"], s:"login"},
 {n:"Resource Boy", u:"https://resourceboy.com/", c:"hub", d:"免費設計資源下載，有模板、字體、PSD、圖形素材等。", t:["模板", "PSD"], s:"login"},
-{n:"奇跡秀 萬能設計庫", u:"http://www.qijishow.com/down/index.html", c:"hub", d:"中文設計資源整理站，有軟體外掛、筆刷、素材的下載導覽。", t:["簡中", "導航"]},
+{n:"奇跡秀 萬能設計庫", u:"https://www.qijishow.com/down/index.html", c:"hub", d:"中文設計資源整理站，有軟體外掛、筆刷、素材的下載導覽。", t:["簡中", "導航"]},
 {n:"Magnific", u:"https://www.magnific.com/app", c:"hub", d:"AI 素材、圖示、向量圖、照片綜合平台。授權依素材而定，使用前請確認。", t:["AI", "icon", "向量", "相片"], s:"login", also:{c:"illust", g:"vec"}},
 {n:"Vecteezy", u:"https://www.vecteezy.com/", c:"hub", d:"大型素材庫，向量、照片、影片、插圖、圖示都有；免費素材通常需標註來源。", t:["向量", "影片", "相片"], s:"login"},
 {n:"Pixabay", u:"https://pixabay.com/zh/", c:"hub", d:"免費照片、插畫、向量、影片與音樂，多數可商用且不需標註。", t:["相片", "向量", "影片", "音樂"], s:"login"},
@@ -319,11 +320,11 @@ const ITEMS = [
 {n:"Envato Elements", u:"https://elements.envato.com/", c:"hub", d:"訂閱制素材庫，模板、字體、音樂、影片素材無限下載。", t:["訂閱制", "模板", "音樂"], s:"login"},
 {n:"Vexels", u:"https://www.vexels.com/", c:"hub", d:"向量圖、T 恤與周邊商品設計素材，有免費與付費方案。", t:["向量", "周邊設計"], s:"login"},
 {n:"Freebiesbug", u:"https://freebiesbug.com/", c:"hub", d:"免費 UI Kit、模板、字體與 PSD 素材整理站。", t:["UI Kit", "模板", "字體"]},
-{n:"大作 bigbigwork", u:"http://p.bigbigwork.com/", c:"hub", d:"設計師專用的集合式搜圖引擎，一次搜 Pinterest、Behance 等大站。", t:["搜圖", "簡中"], s:"login"},
+{n:"大作 bigbigwork", u:"https://p.bigbigwork.com/", c:"hub", d:"設計師專用的集合式搜圖引擎，一次搜 Pinterest、Behance 等大站。", t:["搜圖", "簡中"], s:"login"},
 {n:"優設導航", u:"https://hao.uisdc.com/", c:"hub", d:"優設網整理的設計師網址導航，分類非常完整。", t:["導航", "簡中"]},
-{n:"設計導航 shejidaren", u:"http://hao.shejidaren.com/", c:"hub", d:"精選設計網站大全，素材、靈感、工具分類收錄。", t:["導航", "簡中"]},
-{n:"大美工", u:"http://dameigong.cn/", c:"hub", d:"電商、網頁、平面設計靈感與素材下載站。", t:["電商", "簡中"], s:"login"},
-{n:"紅森林 hoslin", u:"http://www.hoslin.cn/", c:"hub", d:"外掛、預設、筆刷、字體等設計資源分享站；授權不明，商用前請確認。", t:["外掛", "筆刷", "簡中"], s:"login"},
+{n:"設計導航 shejidaren", u:"https://hao.shejidaren.com/", c:"hub", d:"精選設計網站大全，素材、靈感、工具分類收錄。", t:["導航", "簡中"]},
+{n:"大美工", u:"https://dameigong.cn/", c:"hub", d:"電商、網頁、平面設計靈感與素材下載站。", t:["電商", "簡中"], s:"login"},
+{n:"紅森林 hoslin", u:"https://www.hoslin.cn/", c:"hub", d:"外掛、預設、筆刷、字體等設計資源分享站；授權不明，商用前請確認。", t:["外掛", "筆刷", "簡中"], s:"login"},
 {n:"The Stocks", u:"https://thestocks.im/", c:"hub", d:"收錄上千個免費圖庫、圖示、模板與設計工具的導航站。", t:["導航", "圖庫"]},
 {n:"軟倉", u:"https://www.ruancang.net/", c:"hub", d:"中文軟體下載索引站，可依分類搜尋常用電腦軟體。", t:["軟體", "中文"]},
 
@@ -379,7 +380,7 @@ const ITEMS = [
 {n:"Icon Archive", u:"https://www.iconarchive.com/", c:"illust", d:"80 萬個以上的圖示與貼圖，授權依各組圖示而定。", t:["icon"], g:"px"},
 {n:"FLAT ICON DESIGN", u:"http://flat-icon-design.com/", c:"illust", d:"日本可愛扁平風圖示，可商用。", t:["icon", "日本", "可商用"], g:"px"},
 {n:"StickPNG", u:"https://www.stickpng.com/", c:"illust", d:"去背 PNG 與貼圖素材。", t:["去背", "PNG"], g:"px"},
-{n:"The Pattern Library", u:"http://thepatternlibrary.com/", c:"illust", d:"可無縫拼接的花紋背景。", t:["花紋"], g:"px"},
+{n:"The Pattern Library", u:"https://thepatternlibrary.com/", c:"illust", d:"可無縫拼接的花紋背景。", t:["花紋"], g:"px"},
 {n:"Unblast", u:"https://unblast.com/", c:"illust", d:"免費圖示、模板（mockup）與設計素材。", t:["icon", "模板"], s:"login", g:"tpl"},
 {n:"Free Mockup", u:"https://www.free-mockup.com/", c:"illust", d:"免費的實物模板（mockup）：名片、包裝、海報等，套用作品做展示。", t:["模板"], g:"tpl"},
 {n:"Placeit", u:"https://placeit.net/", c:"illust", d:"線上套用模板做 Logo、影片與展示圖，訂閱制。", t:["模板"], s:"login", g:"tpl"},
@@ -415,7 +416,7 @@ const ITEMS = [
 {n:"GL-くるる源", u:"https://github.com/Gutenberg-Labo/GL-CurulMinamoto", c:"font", d:"捲捲造型的日文假名字體（平假名、片假名），開源。", t:["花邊字", "日文"], s:"login", g:"ja"},
 {n:"Kaisei Opti", u:"https://fonts.google.com/specimen/Kaisei+Opti", c:"font", d:"帶點古典韻味的日文明朝體，Google Fonts 提供，可商用。", t:["花邊字", "日文", "可商用"], g:"ja"},
 {n:"德拉黑体 Dela Gothic One", u:"https://fonts.google.com/specimen/Dela+Gothic+One", c:"font", d:"粗壯有力的黑體，支援中日英文。Google Fonts 提供，可商用。", t:["花邊字", "中文", "日文", "可商用"], g:"zhen"},
-{n:"求字體網", u:"http://www.qiuziti.com/", c:"font", d:"上傳圖片辨識中文字體，也有字體下載。", t:["識別", "中文"], g:"zh"},
+{n:"求字體網", u:"https://www.qiuziti.com/", c:"font", d:"上傳圖片辨識中文字體，也有字體下載。", t:["識別", "中文"], g:"zh"},
 {n:"繁簡轉換｜翻譯網", u:"https://name.longwin.com.tw/twcn.php", c:"font", d:"線上繁體、簡體中文互轉，貼上文字即可轉換。", t:["簡繁轉換", "中文"], g:"zh"},
 {n:"書法字體轉換", u:"http://www.shufaziti.com/", c:"font", d:"輸入文字產生毛筆書法字，可下載向量檔。建議輸入簡體字，可選字體較多、轉換效果較好。", t:["書法", "向量", "簡中"], g:"zh"},
 
@@ -444,7 +445,7 @@ const ITEMS = [
 {n:"Grabient", u:"https://www.grabient.com/", c:"color", d:"線上調整與擷取漸層色。", t:["漸層"]},
 {n:"ColorHexa", u:"https://www.colorhexa.com/", c:"color", d:"查任何色碼的資訊、互補色與色彩轉換。", t:["色碼"]},
 {n:"WebFX 取色器", u:"https://www.webfx.com/web-design/color-picker/", c:"color", d:"原 Coleure 已併入 WebFX，線上取色與產生配色。", t:["取色"]},
-{n:"Duotone", u:"http://duotone.shapefactory.co/", c:"color", d:"把照片做成雙色調效果，可上傳自己的圖。", t:["雙色調", "照片"]},
+{n:"Duotone", u:"https://duotone.shapefactory.co/", c:"color", d:"把照片做成雙色調效果，可上傳自己的圖。", t:["雙色調", "照片"]},
 
 // ── 影片・動畫
 {n:"Duik（官方 GitHub）", u:"https://github.com/RxLaboratory/Duik/releases/latest", c:"motion", d:"AE 免費開源的角色綁定動畫腳本，可做骨架、IK。連到最新版下載頁。", t:["AE", "綁定", "開源"], s:"login"},
@@ -477,7 +478,7 @@ const ITEMS = [
 {n:"Wallhaven", u:"https://wallhaven.cc/", c:"media", d:"高畫質桌布搜尋站，可依顏色與解析度篩選；授權依作品而定。", t:["桌布"], s:"login", g:"photo"},
 {n:"Barnimages", u:"https://barnimages.com/", c:"media", d:"免費高畫質照片，可商用。", t:["相片", "可商用"], g:"photo"},
 {n:"ぱくたそ PAKUTASO", u:"https://www.pakutaso.com/", c:"media", d:"日本免費照片素材，不用註冊、可商用，日本人物與街景很多。", t:["相片", "日本", "可商用"], g:"photo"},
-{n:"FreeJPG", u:"http://en.freejpg.com.ar/", c:"media", d:"免費商用照片搜尋站，不需標註。", t:["相片", "可商用"], g:"photo"},
+{n:"FreeJPG", u:"https://en.freejpg.com.ar/", c:"media", d:"免費商用照片搜尋站，不需標註。", t:["相片", "可商用"], g:"photo"},
 {n:"SkyPixel 天空之城", u:"https://www.skypixel.com/", c:"media", d:"全球最大空拍照片與影片社群；授權依作品而定。", t:["空拍", "社群"], s:"login", g:"both"},
 {n:"GIPHY", u:"https://giphy.com/", c:"media", d:"全球最大 GIF 動圖搜尋站，可英文搜尋下載。", t:["GIF"], s:"login", g:"video"},
 {n:"VideoTrans", u:"https://www.kocpc.com.tw/archives/537168", c:"tool", d:"開源 AI 工具：影片轉字幕、自動翻譯再配音（電腦王阿達介紹文）。", t:["下載", "字幕"]},
@@ -508,7 +509,7 @@ const ITEMS = [
 {n:"Janitor AI", u:"https://janitorai.com/", c:"ai", d:"AI 角色聊天平台，可與自訂角色對話。", t:["角色", "對話"], s:"login"},
 {n:"Animated Drawings", u:"https://sketch.metademolab.com/", c:"ai", d:"Meta 出品，上傳手繪人物自動變成會動的動畫。", t:["手繪", "動畫"]},
 {n:"標小智", u:"https://www.logosc.cn/", c:"ai", d:"輸入品牌名稱，AI 自動產生 Logo 與 VI。", t:["Logo", "簡中"], s:"login"},
-{n:"U鈣網", u:"http://www.uugai.com/", c:"ai", d:"輸入文字就能產生 Logo，可免費下載。", t:["Logo", "簡中"]},
+{n:"U鈣網", u:"https://www.uugai.com/", c:"ai", d:"輸入文字就能產生 Logo，可免費下載。", t:["Logo", "簡中"]},
 {n:"DesignEvo", u:"https://www.designevo.com/cn/", c:"ai", d:"8000 多個 Logo 模板，線上編輯產生 Logo。", t:["Logo", "模板"], s:"login"},
 
 // ── 圖片小工具
@@ -541,24 +542,24 @@ const ITEMS = [
 {n:"Typographic Posters", u:"https://www.typographicposters.com/", c:"inspo", d:"2008 年至今的字體與平面海報作品平台。", t:["海報", "字體"]},
 {n:"Reeoo", u:"https://reeoo.com/", c:"inspo", d:"網站、App、圖示的設計參考，可依顏色篩選。", t:["網頁設計", "UI"]},
 {n:"SiteInspire", u:"https://www.siteinspire.com/websites", c:"inspo", d:"精選網頁設計作品，可依風格與類型篩選。", t:["網頁設計"]},
-{n:"Siiimple", u:"http://siiimple.com/", c:"inspo", d:"極簡風格網站作品集。", t:["網頁設計", "極簡"]},
-{n:"MUUUUU.ORG", u:"http://muuuuu.org/", c:"inspo", d:"日本網頁設計靈感庫，可依業種與配色找。", t:["網頁設計", "日本"]},
-{n:"4db", u:"http://4db.cc/", c:"inspo", d:"依地區與業種分類的日本網頁設計連結集。", t:["網頁設計", "日本"]},
+{n:"Siiimple", u:"https://siiimple.com/", c:"inspo", d:"極簡風格網站作品集。", t:["網頁設計", "極簡"]},
+{n:"MUUUUU.ORG", u:"https://muuuuu.org/", c:"inspo", d:"日本網頁設計靈感庫，可依業種與配色找。", t:["網頁設計", "日本"]},
+{n:"4db", u:"https://4db.cc/", c:"inspo", d:"依地區與業種分類的日本網頁設計連結集。", t:["網頁設計", "日本"]},
 {n:"STRAIGHTLINE bookmark", u:"https://bm.straightline.jp/", c:"inspo", d:"收錄近 6000 個日本網站的設計索引。", t:["網頁設計", "日本"]},
-{n:"Web Design File", u:"http://www.webdesignfile.com/", c:"inspo", d:"網頁設計獎項與作品收錄。", t:["網頁設計"]},
+{n:"Web Design File", u:"https://www.webdesignfile.com/", c:"inspo", d:"網頁設計獎項與作品收錄。", t:["網頁設計"]},
 {n:"inagblog", u:"http://inagblog.com/", c:"inspo", d:"韓國網頁與平面設計作品欣賞部落格。", t:["網頁設計", "韓國"]},
 {n:"Page Flows", u:"https://pageflows.com/", c:"inspo", d:"原 UI Movement 已併入，App 與網站的實際操作流程錄影。", t:["UI", "UX"], s:"login"},
 {n:"iOS Icon Gallery", u:"https://iosicongallery.com/", c:"inspo", d:"App Store 精選 App 圖示收藏。", t:["icon", "App"]},
 {n:"Ads of the World", u:"https://www.adsoftheworld.com/", c:"inspo", d:"全球廣告創意作品資料庫。", t:["廣告"]},
 {n:"Inspiration DE", u:"https://www.inspirationde.com/", c:"inspo", d:"平面、海報、品牌設計作品收集。", t:["海報", "品牌"]},
-{n:"Trend List", u:"http://www.trendlist.org/", c:"inspo", d:"記錄平面設計視覺趨勢，畫冊與海報為主。", t:["海報", "趨勢"]},
+{n:"Trend List", u:"https://www.trendlist.org/", c:"inspo", d:"記錄平面設計視覺趨勢，畫冊與海報為主。", t:["海報", "趨勢"]},
 {n:"DIELINE", u:"https://thedieline.com/", c:"inspo", d:"包裝設計作品與產業資訊。", t:["包裝"]},
 {n:"BOOOOOOOM", u:"https://www.booooooom.com/", c:"inspo", d:"藝術、插畫、攝影作品部落格。", t:["藝術", "插畫"]},
 {n:"Creative Boom", u:"https://www.creativeboom.com/", c:"inspo", d:"獨立藝術與設計雜誌，作品與產業新聞。", t:["雜誌"]},
 {n:"It's Nice That", u:"https://www.itsnicethat.com/", c:"inspo", d:"英國創意設計媒體，平面、插畫、品牌作品。", t:["雜誌"]},
 {n:"Abduzeedo", u:"https://abduzeedo.com/", c:"inspo", d:"設計、攝影、UI 靈感部落格。", t:["UI", "攝影"]},
 {n:"Folio Art", u:"https://www.folioart.co.uk/", c:"inspo", d:"倫敦插畫經紀公司，可看許多商業插畫家作品。", t:["插畫", "作品集"]},
-{n:"古田路9號", u:"http://www.gtn9.com/", c:"inspo", d:"中國品牌創意作品平台，也有正版字體素材。", t:["品牌", "簡中"], s:"login"},
+{n:"古田路9號", u:"https://www.gtn9.com/", c:"inspo", d:"中國品牌創意作品平台，也有正版字體素材。", t:["品牌", "簡中"], s:"login"},
 {n:"Logo Design Love", u:"https://www.logodesignlove.com/", c:"inspo", d:"Logo 與品牌設計的作品資料庫與文章。", t:["Logo"]},
 {n:"LogoMoose", u:"https://www.logomoose.com/", c:"inspo", d:"Logo 設計靈感畫廊。", t:["Logo"]},
 {n:"Logopond", u:"https://logopond.com/", c:"inspo", d:"Logo 與品牌識別作品集。", t:["Logo"], s:"login"},
@@ -576,7 +577,7 @@ const ITEMS = [
 {n:"Toon Boom Harmony 教學 01", u:"https://www.youtube.com/watch?v=aqtBUd92bOA&list=PL3aJjAvG9eglJURRRVPqqGF1prxH8X3lD", c:"learn", d:"TBH（Toon Boom Harmony）入門教學清單。", t:["TBH", "2D動畫"]},
 {n:"Toon Boom Harmony 教學 02", u:"https://www.bilibili.com/opus/780388694559293473", c:"learn", d:"bilibili 上的 TBH 教學圖文。", t:["TBH", "2D動畫"]},
 {n:"Toon Boom Harmony 綁 IK", u:"https://youtu.be/DJ5Hssv_cdI", c:"learn", d:"TBH 角色 IK 綁定教學影片。", t:["TBH", "綁定"]},
-{n:"After Effects 表達式參考", u:"http://ae-reference.takayustudio.jp/", c:"learn", d:"日文 AE 表達式與腳本參考手冊。", t:["AE", "表達式"]},
+{n:"After Effects 表達式參考", u:"https://ae-reference.takayustudio.jp/", c:"learn", d:"日文 AE 表達式與腳本參考手冊。", t:["AE", "表達式"]},
 {n:"Mixcraft 數位成音認證（電子書）", u:"https://reading.udn.com/store/center/login.do?redirect=../shelf/shelf_buy.do", c:"learn", d:"Mixcraft 官方認證用書，在 udn 讀書吧書櫃，需登入。", t:["音樂製作", "電子書"], s:"login"},
 {n:"ewant 育網開放教育平台", u:"https://www.ewant.org/my/", c:"learn", d:"台灣的線上課程平台（MOOCs），此連結是個人課程頁。", t:["線上課程"], s:"login"},
 {n:"賽局與生活（臺大開放式課程）", u:"https://www.youtube.com/playlist?list=PLCX-BLZ1hDpDQnZJNzPvJaf8p0zuxSVyJ", c:"learn", d:"臺大馮勃翰老師的賽局理論課，教你預測別人行為、做出最佳決策。", t:["賽局理論", "臺大", "課程"]},
@@ -590,7 +591,7 @@ const ITEMS = [
 {n:"Shape Type", u:"https://shape.method.ac/", c:"learn", d:"修正字母形狀的小遊戲，練字體造型。", t:["練習", "字體"]},
 {n:"The Bézier Game", u:"https://bezier.method.ac/", c:"learn", d:"鋼筆工具練習遊戲。", t:["練習", "鋼筆工具"]},
 {n:"Color Game", u:"https://color.method.ac/", c:"learn", d:"配色與色彩辨識練習遊戲。", t:["練習", "色彩"]},
-{n:"色感測試", u:"http://game.ioxapp.com/eye-test/game.html", c:"learn", d:"找出不同色塊的色感小遊戲。", t:["練習", "色彩"]},
+{n:"色感測試", u:"https://game.ioxapp.com/eye-test/game.html", c:"learn", d:"找出不同色塊的色感小遊戲。", t:["練習", "色彩"]},
 
 // ── 效率・雲端・其他
 {n:"Google 翻譯", u:"https://translate.google.com.tw/", c:"work", d:"文字、文件、網頁翻譯。", t:["翻譯"]},
@@ -600,18 +601,18 @@ const ITEMS = [
 {n:"Fotor", u:"https://www.fotor.com.cn/", c:"tool", d:"線上修圖與設計工具，也有 AI 功能。", t:["修圖"], s:"login"},
 {n:"EdrawMax 線上版", u:"https://www.edrawmax.com/online/en/", c:"tool", d:"線上畫流程圖、心智圖、平面圖。", t:["圖表"], s:"login"},
 {n:"Magic Eraser", u:"https://magicstudio.com/magiceraser", c:"tool", d:"原 magiceraser.io 已併入 Magic Studio，塗抹就能刪除照片中的雜物。", t:["去雜物", "AI"], s:"login"},
-{n:"在線 PS（uupoop）", u:"http://www.uupoop.com/ps/", c:"tool", d:"線上版類 Photoshop 修圖工具。", t:["修圖", "線上"]},
+{n:"在線 PS（uupoop）", u:"https://www.uupoop.com/ps/", c:"tool", d:"線上版類 Photoshop 修圖工具。", t:["修圖", "線上"]},
 {n:"創客貼", u:"https://www.chuangkit.com/designtools/designindex", c:"tool", d:"中文線上設計工具，海報、名片、社群圖模板很多。", t:["模板", "簡中"], s:"login"},
 {n:"Icon Factory", u:"https://icon.wuruihong.com/", c:"tool", d:"一鍵產生 iOS、Android 各尺寸 App 圖示與啟動圖。", t:["App icon"]},
 {n:"Pixel Map Generator", u:"https://pixelmap.amcharts.com/", c:"tool", d:"把世界地圖轉成點點、像素風格，可輸出 SVG。", t:["地圖", "SVG"]},
 {n:"Trianglify", u:"https://trianglify.io/", c:"tool", d:"產生低多邊形（Low Poly）背景圖。", t:["背景", "低多邊形"]},
-{n:"Noise Texture Generator", u:"http://www.noisetexturegenerator.com/", c:"tool", d:"三步驟產生雜訊質感背景圖。", t:["質感", "背景"]},
+{n:"Noise Texture Generator", u:"https://www.noisetexturegenerator.com/", c:"tool", d:"三步驟產生雜訊質感背景圖。", t:["質感", "背景"]},
 {n:"TinyPNG", u:"https://tinypng.com/", c:"tool", d:"壓縮 PNG、JPG、WebP 圖片，幾乎不失真。", t:["壓縮"]},
 {n:"iLoveIMG", u:"https://www.iloveimg.com/", c:"tool", d:"線上壓縮、裁切、轉檔、去背等圖片工具。", t:["壓縮", "轉檔"], s:"login"},
 {n:"Jpeg.io", u:"https://www.jpeg.io/", c:"tool", d:"把各種圖片格式轉成高品質壓縮的 JPEG。", t:["壓縮", "轉檔"]},
 {n:"ImageOptim", u:"https://imageoptim.com/mac", c:"tool", d:"Mac 離線圖片壓縮軟體。", t:["壓縮", "Mac"]},
 {n:"Smallpdf", u:"https://smallpdf.com/", c:"tool", d:"PDF 壓縮、轉檔、合併等線上工具。", t:["PDF"], s:"login"},
-{n:"PDF Compressor", u:"http://pdfcompressor.com/zh/", c:"tool", d:"免費線上壓縮 PDF，不需註冊。", t:["PDF", "壓縮"]},
+{n:"PDF Compressor", u:"https://pdfcompressor.com/zh/", c:"tool", d:"免費線上壓縮 PDF，不需註冊。", t:["PDF", "壓縮"]},
 {n:"Ezgif", u:"https://ezgif.com/", c:"tool", d:"線上 GIF 製作、壓縮、裁切、轉檔。", t:["GIF", "壓縮"]},
 {n:"Trello", u:"https://trello.com/", c:"work", d:"看板式任務管理工具。", t:["專案管理"], s:"login"},
 {n:"TimeTree", u:"https://timetreeapp.com/", c:"work", d:"可多人共用的行事曆。", t:["行事曆"], s:"login"},
@@ -707,10 +708,16 @@ const TIPS = [
     const hay = (i.n+" "+i.d+" "+i.t.join(" ")+" "+host(i.u)+" "+(CATS.find(c=>c.id===i.c)||{}).name).toLowerCase();
     return q.split(/\s+/).every(w=>hay.includes(w));
   }
+  // 標題：括號裡的補充（例如「（@daveylovescode）」）縮小一點、整段一起換行，不會從字中間斷開；↗ 跟著最後一個字
+  function titleHTML(n){
+    const tail = s => `${esc(s.slice(0,-1))}<span class="nw">${esc(s.slice(-1))}<span class="arr">${ARR}</span></span>`;
+    const m = n.match(/^(.+?)\s*([（(][^（(]*[）)])$/);
+    return m ? `${esc(m[1])}<span class="paren">${tail(m[2])}</span>` : tail(n);
+  }
   function card(i){
     const isDead = !!dead[i.u], isFav = !!fav[i.u];
     return `<article class="card${isDead?" dead":""}">
-      <div class="top"><a class="title" href="${esc(i.u)}" target="_blank" rel="noopener noreferrer">${esc(i.n.slice(0,-1))}<span class="nw">${esc(i.n.slice(-1))}<span class="arr">${ARR}</span></span></a>${isDead?'<span class="badge b-dead">已標記失效</span>':badge(i.s)}<button class="fav" data-u="${esc(i.u)}" aria-pressed="${isFav}" title="${isFav?"取消收藏":"加入收藏"}" aria-label="${isFav?"取消收藏":"加入收藏"}">${STAR}</button></div>
+      <div class="top"><a class="title" href="${esc(i.u)}" target="_blank" rel="noopener noreferrer">${titleHTML(i.n)}</a>${isDead?'<span class="badge b-dead">已標記失效</span>':badge(i.s)}<button class="fav" data-u="${esc(i.u)}" aria-pressed="${isFav}" title="${isFav?"取消收藏":"加入收藏"}" aria-label="${isFav?"取消收藏":"加入收藏"}">${STAR}</button></div>
       <div class="host">${esc(host(i.u))}</div>
       <p class="desc">${esc(i.d)}</p>
       <div class="tags"><span class="tg">${i.t.map(t=>`<button class="tag" data-t="${esc(t)}">#${esc(t)}</button>`).join("")}</span><button class="mark" data-u="${esc(i.u)}">${isDead?"取消標記":"標記失效"}</button></div>
