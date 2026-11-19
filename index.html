@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" class="boot">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>資源百寶箱</title>
+<style>/* 載入中先隱藏，等內容排好、字型載好再淡入，避免看到半成品畫面跳動 */
+html.boot body{opacity:0} body{transition:opacity .2s ease}</style>
+<script>setTimeout(function(){document.documentElement.classList.remove("boot")},2500)</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
@@ -866,6 +869,9 @@ const TIPS = [
   renderCats(); render(); layout(); arrows();
   if(document.fonts) document.fonts.ready.then(()=>{ layout(); arrows(); });
   const act = cs.querySelector('[aria-pressed="true"]'); if(act && cat!=="all"){ cs.style.scrollBehavior="auto"; cs.scrollLeft=Math.min(Math.floor(act.offsetLeft/step())*step(),maxS()); cs.style.scrollBehavior=""; arrows(); }
+  // 內容排好後顯示；字型最多等 1.2 秒，載好就重排一次再顯示
+  (function(){ const show=()=>{ try{ relayout(); }catch(e){} document.documentElement.classList.remove("boot"); };
+    if(document.fonts && document.fonts.ready){ Promise.race([document.fonts.ready, new Promise(r=>setTimeout(r,1200))]).then(()=>requestAnimationFrame(show)); } else show(); })();
 })();
 </script>
 </body>
